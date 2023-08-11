@@ -18,8 +18,9 @@ body {
   margin-bottom: 10px;
   background-color: #E8F1F2;
   border: 1px solid white;
-  box-shadow: 2px 2px 1px 1px rgb(151, 151, 151);
+  box-shadow: 3px 3px 1px 1px rgb(151, 151, 151);
   border-radius: 10px;
+  font-family: monospace;
 }
 
 .botaozin{
@@ -33,6 +34,7 @@ body {
   cursor: pointer;
   font-weight: bold;
   margin-left: 100px;
+  font-family: monospace;
 }
 
 form{

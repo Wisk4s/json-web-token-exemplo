@@ -1,3 +1,46 @@
 body {
-  background-color: aquamarine;
+  font-family: monospace;
+  display: grid;
+  justify-content: center;
+  background-color: #13293D;
+}
+
+.titulo{
+  font-size: 2rem;
+  padding-left: 35px;
+  font-weight: bold;
+  color: #E8F1F2;
+}
+
+.inputzada{
+  padding: 10px;
+  padding-right: 100px;
+  margin-bottom: 10px;
+  background-color: #E8F1F2;
+  border: 1px solid white;
+  box-shadow: 2px 2px 1px 1px rgb(151, 151, 151);
+  border-radius: 10px;
+}
+
+.botaozin{
+  background-color: #1B98E0;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #1B98E0;
+  box-shadow: 3px 3px 1px 1px #1884c3;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 100px;
+}
+
+form{
+  justify-content: center;
+  background-color: #247BA0;
+  border: 1px solid #006494;
+  border-radius: 10px;
+  box-shadow: 3px 3px 1px 1px #006494;
+  margin-top: 180px;
+  padding: 150px;
 }

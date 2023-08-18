@@ -40,6 +40,22 @@ app.get('/', async function(req, res){
   res.render("home")
 })
 
+app.post('/usuarios/cadastrar', (req, res) => {
+  let {usuario, senha, csenha} = req.body;
+  
+    const id = 1;
+
+    if ( senha == csenha ){
+      return res.json({
+        usuario: usuario,
+        senha: senha,
+        csenha: csenha
+      })
+    }else{
+      res.status(500).json({mensagem: "As senhas são diferentes!"})
+    }   
+  })
+
 app.post('/logar', (req, res) => {
   if (req.body.usuario == "Victor" && req.body.senha == "40028922"){
     const id = 1;

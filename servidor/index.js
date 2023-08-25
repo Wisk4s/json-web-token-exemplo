@@ -37,27 +37,38 @@ app.get('/autenticar', async function(req, res){
 })
 
 app.get('/', async function(req, res){
-  res.render("home")
-})
+  try {
+    const list = await usuario.findAll();
+    res.render('/', { list });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Erro ao listar usuários");
+  }
+});
 
-app.post('/usuarios/cadastrar', (req, res) => {
-  let {usuario, senha, csenha} = req.body;
-  
-    const id = 1;
+app.post('/usuarios/cadastrar', async function (req, res){
 
-    if ( senha == csenha ){
-      return res.json({
-        usuario: usuario,
-        senha: senha,
-        csenha: csenha
-      })
-    }else{
-      res.status(500).json({mensagem: "As senhas são diferentes!"})
-    }   
+  if( req.body.senha == req.body.csenha){
+    await usuario.create(req.body);
+    res.redirect("/usuarios/listar")
+     } else{
+      res.status(500).json({mensagem: "Não foi possível cadastrar"})
+     }
   })
 
+  app.get('/usuarios/listar', async function(req, res){
+    try{
+      const list = await usuario.findAll();
+      res.render('listar', {list})
+      
+    }catch(error){
+      console.error(error);
+      res.status(500).send("Erro ao listar")
+    }
+     })
+
 app.post('/logar', (req, res) => {
-  if (req.body.usuario == "Victor" && req.body.senha == "40028922"){
+  if (req.body.usuario == "vito" && req.body.senha == "123"){
     const id = 1;
 
     const token = jwt.sign({ id }, process.env.SECRET, {

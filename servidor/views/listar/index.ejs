@@ -11,11 +11,9 @@
   <div class="container">
     <h1>Lista de Usuários Cadastrados</h1>
     <ul>
-      <% for (const user of list) { %>
-        <li>
-          <p><strong>Nome:</strong> <%= user.usuario %></p>
-        </li>
-      <% } %>
+     <% list.forEach((usuario) => { %>
+      <p><strong>Nome:</strong> <%= user.usuario %></p>
+     <%})%>
     </ul>
   </div>
 </body>

@@ -51,6 +51,7 @@ app.post('/usuarios/cadastrar', async function (req, res){
   if( req.body.senha == req.body.csenha){
     await usuario.create(req.body);
     res.redirect("/usuarios/listar")
+
      } else{
       res.status(500).json({mensagem: "Não foi possível cadastrar"})
      }

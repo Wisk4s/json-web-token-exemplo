@@ -69,7 +69,7 @@ app.post('/usuarios/cadastrar', async function (req, res){
      })
 
 app.post('/logar', (req, res) => {
-  if (req.body.usuario == "vito" && req.body.senha == "123"){
+  if (req.body.nome == "vito" && req.body.senha == "123"){
     const id = 1;
 
     const token = jwt.sign({ id }, process.env.SECRET, {

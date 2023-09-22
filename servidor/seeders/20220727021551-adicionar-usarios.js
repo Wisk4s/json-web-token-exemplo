@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('usuarios', [
-      { usuario: 'vito', senha: '123' }
+      { nome: 'vito', senha: '123' }
     ], {});
   },
 

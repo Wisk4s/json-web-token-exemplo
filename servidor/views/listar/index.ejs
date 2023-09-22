@@ -8,11 +8,11 @@
   <title>Lista de Usuários</title>
 </head>
 <body>
-  <div class="container">
+  <div class="listar">
     <h1>Lista de Usuários Cadastrados</h1>
     <ul>
      <% list.forEach((usuario) => { %>
-      <p><strong>Nome:</strong> <%= user.usuario %></p>
+      <p class="usuario"><strong>Nome:</strong> <%= usuario.nome %></p>
      <%})%>
     </ul>
   </div>

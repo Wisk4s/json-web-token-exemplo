@@ -17,20 +17,21 @@ body {
   padding: 10px;
   padding-right: 100px;
   margin-bottom: 10px;
-  background-color: #E8F1F2;
+  background: none;
   border: 1px solid white;
   box-shadow: 0px 0px 5px 0px black;
   border-radius: 10px;
   font-family: monospace;
+  font-weight: bold;
+  color: white;
 }
 
 .botaozin{
-  background-color: #1e405f;
   margin-top: 10px;
   padding: 10px;
+  background: none;
   border-radius: 10px;
-  border: 1px solid #1e405f;
-  box-shadow: 0px 0px 5px 0px black;
+  border: 1px solid white;
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -38,12 +39,16 @@ body {
   font-family: monospace;
 }
 
+.botaozin:hover{
+  transition: 0.5s;
+  box-shadow: 0px 0px 5px 0px white;
+}
+
 form{
   justify-content: center;
-  background-color: #1b3a56;
-  border: none;
+  background-color: none;
+  border: 1px solid white;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px black;
   margin-top: 180px;
   padding: 150px;
 }
@@ -51,14 +56,14 @@ form{
 .usuario{
   border: 1px solid white;
   padding: 10px;
-  width: 30%;
+  width: 80%;
   border-radius: 10px;
   text-align: center;
-  margin-left: 100px;
+  margin-top: 10px;
 }
 
 .listar{
   text-align: center;
   display: grid;
-  margin-top: 350px;
+  margin-top: 150px;
 }

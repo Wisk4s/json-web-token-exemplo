@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser')
 const express = require('express');
 const { usuario } = require('./models');
 
+const crypto = require('./crypto')
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -25,7 +27,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar"] })
+  }).unless({ path: ["/", "/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar"] })
 );
 
 app.get('/usuarios/cadastrar', async function(req, res){
@@ -37,19 +39,16 @@ app.get('/autenticar', async function(req, res){
 })
 
 app.get('/', async function(req, res){
-  try {
-    const list = await usuario.findAll();
-    res.render('/', { list });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Erro ao listar usuários");
-  }
+    res.render('home');
 });
 
 app.post('/usuarios/cadastrar', async function (req, res){
 
   if( req.body.senha == req.body.csenha){
-    await usuario.create(req.body);
+    let cryptar = req.body
+    cryptar.senha = crypto.encrypt(req.body.senha)
+
+    await usuario.create(cryptar);
     res.redirect("/usuarios/listar")
 
      } else{
@@ -68,10 +67,10 @@ app.post('/usuarios/cadastrar', async function (req, res){
     }
      })
 
-app.post('/logar', (req, res) => {
-  if (req.body.nome == "vito" && req.body.senha == "123"){
-    const id = 1;
-
+app.post('/logar', async (req, res) => {
+  const registra = await usuario.findOne ({ where: {usuario: req.body.usuario}});
+  if (registra){
+    const id = registra.id;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 300
     });
@@ -88,7 +87,7 @@ app.post('/logar', (req, res) => {
 
 app.post('/deslogar', function(req, res) {
   res.cookie('token', null, { httpOnly: true});
-  return res.json({
+  res.json({
     deslogado: true
   })
 })

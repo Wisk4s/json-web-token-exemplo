@@ -12,7 +12,10 @@
     <h1>Lista de Usuários Cadastrados</h1>
     <ul>
      <% list.forEach((usuario) => { %>
-      <p class="usuario"><strong>Nome:</strong> <%= usuario.nome %></p>
+      <div class="usuario">
+        <p><strong>Nome:</strong> <%= usuario.nome %></p>
+        <p><strong>Senha:</strong> <%= usuario.senha %></p>
+      </div>
      <%})%>
     </ul>
   </div>

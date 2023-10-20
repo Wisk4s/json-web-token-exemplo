@@ -7,12 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-    <h2> Usuários Cadastrados ⬇</h2>
-    <ul>
-      <% cadastros.map(usuario => { %>
-      <li><%= usuario.nome %></li>
-    <% }) %>
-    </ul>
   <form action="/deslogar" method="post">
     <input type="submit" value="Deslogar">
   </form>

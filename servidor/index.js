@@ -68,7 +68,7 @@ app.post('/usuarios/cadastrar', async function (req, res){
      })
 
 app.post('/logar', async (req, res) => {
-  const registra = await usuario.findOne ({ where: {usuario: req.body.usuario}});
+  const registra = await usuario.findOne ({ where: {usuario: req.body.usuario, senha: crypto.encrypt(req.body.senha)}});
   if (registra){
     const id = registra.id;
     const token = jwt.sign({ id }, process.env.SECRET, {

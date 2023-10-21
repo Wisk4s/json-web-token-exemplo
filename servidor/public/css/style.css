@@ -67,3 +67,17 @@ form{
   display: grid;
   margin-top: 150px;
 }
+
+.clear{
+  display: flex;
+  justify-content: center;
+  background-color: none;
+  border: none;
+  border-radius: none;
+  margin-top: 180px;
+  padding: 150px;
+}
+
+.clear>*{
+  margin: 0;
+}

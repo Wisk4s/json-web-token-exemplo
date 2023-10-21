@@ -68,22 +68,16 @@ app.post('/usuarios/cadastrar', async function (req, res){
      })
 
 app.post('/logar', async (req, res) => {
-  const registra = await usuario.findOne ({ where: {usuario: req.body.usuario, senha: crypto.encrypt(req.body.senha)}});
+  const registra = await usuario.findOne ({ where: {nome: req.body.nome, senha: crypto.encrypt(req.body.senha)}});
+
   if (registra){
     const id = registra.id;
-    const token = jwt.sign({ id }, process.env.SECRET, {
-      expiresIn: 300
-    });
-
-    res.cookie('token', token, { httpOnly: true});
-    return res.json({
-      usuario: req.body.usuario,
-      token: token
-    })
+    const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 300 });
+    res.cookie('token', token, { httpOnly: true })
+    return res.redirect('/')
   }
-
   res.status(500).json({mensagem: "Login Inválido"})
-})
+});
 
 app.post('/deslogar', function(req, res) {
   res.cookie('token', null, { httpOnly: true});

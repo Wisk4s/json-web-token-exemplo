@@ -6,6 +6,7 @@ import styles from '../../../page.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import {postUser} from '@/app/functions/handlerAcessAPI';
 
 export default function Registro() {
   const [registra, setRegistra] = useState({
@@ -14,8 +15,6 @@ export default function Registro() {
     password: ''
   });
   const { push, refresh } = useRouter();
-
-  
 
   const handlerRegistro = async (e) => {
     e.preventDefault();

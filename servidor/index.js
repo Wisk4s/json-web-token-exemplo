@@ -4,6 +4,17 @@ const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
 
+const corsOpcoes = {
+  //cliente que fará o acesso
+  origin: "http://localhost:3000",
+
+  //metodos que o cliente pode executar
+  methods: "GET, PUT, POST, DELETE",
+
+  allowedHeader: "Content-Type, Authorization",
+  credentials: true
+}
+
 var cookieParser = require('cookie-parser')
 
 const express = require('express');
@@ -14,10 +25,9 @@ const crypto = require('./crypto')
 const app = express();
 
 app.set('view engine', 'ejs');
-
-app.use(cors());
-
+  
 app.use(express.json());
+app.use(cors(corsOpcoes));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
 
@@ -27,7 +37,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: ["/", "/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar"] })
+  }).unless({ path: ["/", "/autenticar", "/logar", "/deslogar"] })
 );
 
 app.get('/usuarios/cadastrar', async function(req, res){
@@ -59,7 +69,7 @@ app.post('/usuarios/cadastrar', async function (req, res){
   app.get('/usuarios/listar', async function(req, res){
     try{
       const list = await usuario.findAll();
-      res.render('listar', {list})
+      res.json(list)
       
     }catch(error){
       console.error(error);
@@ -73,7 +83,10 @@ app.post('/logar', async (req, res) => {
   if (registra){
     const id = registra.id;
     const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 300 });
-    res.cookie('token', token, { httpOnly: true })
+    res.cookie('token', token, { httpOnly: true }).json({
+      nome: registra.usuario,
+      token: token
+    });
     return res.redirect('/')
   }
   res.status(500).json({mensagem: "Login Inválido"})

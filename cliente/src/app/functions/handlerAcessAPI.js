@@ -92,4 +92,4 @@ const getUserRegistered = (user) => {
     return newUserAuth*/
 }
 
-export { getUsers, getUserAuthenticated, getUserRegistered};
+export { getUsers, getUserAuthenticated, getUserRegistered, postUser};

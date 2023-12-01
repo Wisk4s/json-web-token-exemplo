@@ -53,6 +53,7 @@ app.get('/', async function(req, res){
 });
 
 app.post('/usuarios/cadastrar', async function (req, res){
+  console.log(req.body.nome)
 
   if( req.body.senha == req.body.csenha){
     let cryptar = req.body
@@ -82,9 +83,9 @@ app.post('/user/authenticated', async (req, res) => {
 
   if (registra){
     const id = registra.id;
-    const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 300 });
-    res.cookie('token', token, { httpOnly: true }).json({
-      nome: registra.usuario,
+    const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 3800 });
+    return res.cookie('token', token, { httpOnly: true }).json({
+      nome: registra.nome,
       token: token
     });
     //return res.json(registra)//necessário porque se retornar aqui ele nao continua o código, ele interompe na hora

@@ -14,7 +14,7 @@ export default async function Dashboard() {
 
                     <div className={styles.manos}>  
                         {chama.map((users) => //mapeando o "banco de dados" e chamando apenas o nome do usuário 
-                            <p className={styles.usuario}>Nome ➡ {users.name}</p>
+                            <p className={styles.usuario}>Nome ➡ {users.nome}</p>
                         )}
                     </div>
                     <h3 className={styles.h3}>Não tem uma conta? Crie uma na <Link className={styles.link} href='/pages/register'>página de registro</Link></h3>

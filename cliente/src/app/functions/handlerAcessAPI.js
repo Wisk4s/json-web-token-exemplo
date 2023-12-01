@@ -1,6 +1,8 @@
 'use server'
 
-const url = "https://aula-17-10-ashen.vercel.app"
+import { cookies } from "next/dist/client/components/headers";
+
+const url = "http://localhost:3000"
 
 const getUserAuthenticated = async (user) => {
 
@@ -22,11 +24,12 @@ try{
 }  
 
 const postUser = async (user) => {
-    console.log(JSON.stringify(user))
+    const token = cookies().get("token")?.value
     try{ 
-        const responseOfApi = await fetch(url + "/user", {
+        const responseOfApi = await fetch(url + "/usuarios/cadastrar", {
             method: 'POST',
-            headers: { 'Content-Type': 'Application/json' },
+            headers: { 'Content-Type': 'Application/json', 
+            Cookie: ` token=${token}`},
             body: JSON.stringify(user)
         });
         const userSave = await responseOfApi.json();
@@ -39,11 +42,14 @@ const postUser = async (user) => {
 }
 
 const getUsers = async () =>{
-    const osManos = await fetch(url + "/users", {
+    const token = cookies().get("token")?.value
+    const responseOfApi = await fetch(url + "/usuarios/listar", {
         next: {revalidate: 5},
+        headers: { 'Content-Type': 'Application/json', 
+        Cookie: ` token=${token}`},
     });
 
-    const userAuth = await osManos.json();
+    const userAuth = await responseOfApi.json();
     return userAuth;
 };
 

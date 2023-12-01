@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const [user, setUser] = useState({
-    email: '',
+    nome: '',
     password: ''
   });
 
@@ -42,16 +42,16 @@ export default function Login() {
           <input
             required
             className={styles.input}
-            placeholder='E-mail'
-            type="email"
-            onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
+            placeholder='Nome'
+            type="nome"
+            onChange={(e) => { setUser({ ...user, nome: e.target.value }) }}>
           </input>
           <input
             required
             className={styles.input}
             placeholder='Senha'
             type='password'
-            onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
+            onChange={(e) => { setUser({ ...user, senha: e.target.value }) }}>
           </input>
           <button className={styles.button}>Entrar</button>
         </form>

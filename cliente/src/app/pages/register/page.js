@@ -9,9 +9,9 @@ import { postUser } from "@/app/functions/handlerAcessAPI";
 
 export default function Registro() {
   const [registra, setRegistra] = useState({
-    name: '',
-    email: '',
-    password: ''
+    nome: '',
+    senha: '',
+    csenha: ''
   });
   const { push, refresh } = useRouter();
 
@@ -37,25 +37,28 @@ export default function Registro() {
           <input
             required
             className={styles.input}
+            name="nome"
             placeholder='Nome'
             type="name"
-            onChange={(e) => { setRegistra({ ...registra, name: e.target.value }) }}>
+            onChange={(e) => { setRegistra({ ...registra, nome: e.target.value }) }}>
           </input>
 
           <input
             required
             className={styles.input}
-            placeholder='E-mail'
-            type="email"
-            onChange={(e) => { setRegistra({ ...registra, email: e.target.value }) }}>
-          </input>
-
-          <input
-            required
-            className={styles.input}
+            name="senha"
             placeholder='Senha'
             type='password'
-            onChange={(e) => { setRegistra({ ...registra, password: e.target.value }) }}>
+            onChange={(e) => { setRegistra({ ...registra, senha: e.target.value }) }}>
+          </input>
+
+          <input
+            required
+            name="csenha"
+            className={styles.input}
+            placeholder='Confirme sua senha'
+            type='password'
+            onChange={(e) => { setRegistra({ ...registra, csenha: e.target.value }) }}>
           </input>
           <button className={styles.button}>Entrar</button>
         </form>

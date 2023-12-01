@@ -19,6 +19,11 @@ export default function Registro() {
 
   const handlerRegistro = async (e) => {
     e.preventDefault();
+    
+    if(registra.senha != registra.csenha){
+      return toast.error('As senhas diferem seu merda!!!!!!')
+    }
+    
     try {
       await postUser(registra);
       toast.success('Usuário registrado com sucesso!');

@@ -27,6 +27,7 @@ const postUser = async (user) => {
     const token = cookies().get("token")?.value
     try{ 
         const responseOfApi = await fetch(url + "/usuarios/cadastrar", {
+            cache: "no-cache",
             method: 'POST',
             headers: { 'Content-Type': 'Application/json', 
             Cookie: ` token=${token}`},

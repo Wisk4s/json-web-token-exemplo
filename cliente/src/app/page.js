@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const [user, setUser] = useState({
-    name: '',
+    email: '',
     password: ''
   });
 
@@ -42,9 +42,9 @@ export default function Login() {
           <input
             required
             className={styles.input}
-            placeholder='Nome'
-            type="text"
-            onChange={(e) => { setUser({ ...user, name: e.target.value }) }}>
+            placeholder='E-mail'
+            type="email"
+            onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
           </input>
           <input
             required
@@ -55,8 +55,7 @@ export default function Login() {
           </input>
           <button className={styles.button}>Entrar</button>
         </form>
-        <h3 className={styles.h3}>Deseja alterar algum dado? <Link className={styles.link} href="/pages/alter">Clique aqui</Link></h3>
-        <h3 className={styles.h3}>Não tem uma conta? Vá para a <Link className={styles.link} href='/pages/register'>página de registro</Link></h3>
+        <h3 className={styles.h3}>Não tem uma conta? Crie uma na <Link className={styles.link} href='/pages/register'>página de registro</Link></h3>
         <ToastContainer />
       </div>
     </body>

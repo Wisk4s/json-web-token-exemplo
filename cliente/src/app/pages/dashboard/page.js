@@ -17,8 +17,7 @@ export default async function Dashboard() {
                             <p className={styles.usuario}>Nome ➡ {users.name}</p>
                         )}
                     </div>
-                    <h3 className={styles.h3}>Deseja alterar algum dado? <Link className={styles.link} href='/pages/alter'>Clique aqui</Link></h3>
-                    <h3 className={styles.h3}>Não tem uma conta? Vá para a <Link className={styles.link} href='/pages/register'>página de registro</Link></h3>
+                    <h3 className={styles.h3}>Não tem uma conta? Crie uma na <Link className={styles.link} href='/pages/register'>página de registro</Link></h3>
                 </div>
             </div>
         </body>

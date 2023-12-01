@@ -21,7 +21,7 @@ export default function Registro() {
     e.preventDefault();
     
     if(registra.senha != registra.csenha){
-      return toast.error('As senhas diferem seu merda!!!!!!')
+      return toast.error('As senhas são diferentes.')
     }
     
     try {
